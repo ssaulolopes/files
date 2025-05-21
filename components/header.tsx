@@ -24,10 +24,6 @@ export function Header({ sidebarVisible, setSidebarVisible, setCurrentPage }: He
         </Button>
         <div className="flex items-center cursor-pointer" onClick={() => setCurrentPage(null)}>
           <img src="/logo-prefeitura.png" alt="Prefeitura Rio Logo" className="h-10 w-auto" />
-          <div className="ml-2 text-white">
-            <div className="text-xs font-bold">Assistência</div>
-            <div className="text-xs">Social</div>
-          </div>
         </div>
       </div>
 

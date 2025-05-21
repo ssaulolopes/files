@@ -171,16 +171,23 @@ export default function Dashboard() {
         return <FormulariosPage onBack={() => setCurrentPage(null)} />
       default:
         return (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {categories.map((category) => (
-              <CategoryCard
-                key={category.id}
-                title={category.title}
-                description={category.description}
-                buttons={category.buttons}
-              />
-            ))}
-          </div>
+          <>
+            <div className="bg-[#1a3b6d] rounded-md p-8 mb-8 text-white text-center">
+              <h1 className="text-2xl font-semibold">SEJA BEM-VINDO(A)</h1>
+              <p className="text-base">ao Sistema Integrado da Secretaria Municipal de Assistência Social</p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {categories.map((category) => (
+                <CategoryCard
+                  key={category.id}
+                  title={category.title}
+                  description={category.description}
+                  buttons={category.buttons}
+                />
+              ))}
+            </div>
+          </>
         )
     }
   }
@@ -190,14 +197,7 @@ export default function Dashboard() {
       <Header sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible} setCurrentPage={setCurrentPage} />
       <div className="flex">
         {sidebarVisible && <Menu setCurrentPage={setCurrentPage} />}
-        <main className={`flex-1 p-6 transition-all duration-300 ${sidebarVisible ? "" : "ml-0"}`}>
-          <div className="bg-[#1a3b6d] rounded-md p-6 mb-6 text-white text-center">
-            <h1 className="text-xl font-semibold">SEJA BEM-VINDO(A)</h1>
-            <p className="text-sm">ao Sistema Integrado da Secretaria Municipal de Assistência Social</p>
-          </div>
-
-          {renderPage()}
-        </main>
+        <main className={`flex-1 p-8 transition-all duration-300 ${sidebarVisible ? "" : "ml-0"}`}>{renderPage()}</main>
       </div>
     </div>
   )

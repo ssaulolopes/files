@@ -1,6 +1,5 @@
 "use client"
 
-import { BulletproofImage } from "@/components/ui/bulletproofimage";
 import { useState } from "react"
 import {
   Shield,
@@ -38,78 +37,60 @@ export function CategoryCard({ title, description, buttons }: CategoryCardProps)
   const getIcon = () => {
     switch (title) {
       case "PROTEÇÃO SOCIAL BÁSICA":
-        return (
-          <BulletproofImage
-            src="/PSB_ICON.png"
-            alt="Proteção Social Básica"
-          />
-        );
+        return <Shield className="h-24 w-24 text-sky-400" />
       case "VIGILÂNCIA SOCIOASSISTENCIAL":
-        return (
-          <BulletproofImage
-            src="/VIGILANCIA_ICON.png"
-            alt="Vigilância Socioassistencial"
-          />
-        );
+        return <FileText className="h-24 w-24 text-sky-400" />
       case "PROTEÇÃO SOCIAL ESPECIAL":
-        return (
-          <BulletproofImage
-            src="/PSE_ICON.png"
-            alt="Proteção Social Especial"
-          />
-        );
+        return <Home className="h-24 w-24 text-sky-400" />
       case "CADASTRO ÚNICO":
-        return (
-          <BulletproofImage
-            src="/CADUNICO_ICON.png"
-            alt="Cadastro Único"
-          />
-        );
-      }
-  };
+        return <Users className="h-24 w-24 text-sky-400" />
+      default:
+        return <Shield className="h-24 w-24 text-sky-400" />
+    }
+  }
 
   const getButtonIcon = (iconName: string) => {
     switch (iconName) {
       case "emergency":
-        return <AlertCircle className="h-8 w-8 text-sky-400" />
+        return <AlertCircle className="h-16 w-16 text-sky-400" />
       case "card":
-        return <CreditCard className="h-8 w-8 text-sky-400" />
+        return <CreditCard className="h-16 w-16 text-sky-400" />
       case "home":
-        return <Home className="h-8 w-8 text-sky-400" />
+        return <Home className="h-16 w-16 text-sky-400" />
       case "document":
-        return <FileText2 className="h-8 w-8 text-sky-400" />
+        return <FileText2 className="h-16 w-16 text-sky-400" />
       case "report":
-        return <FileText className="h-8 w-8 text-sky-400" />
+        return <FileText className="h-16 w-16 text-sky-400" />
       case "people":
-        return <Users2 className="h-8 w-8 text-sky-400" />
+        return <Users2 className="h-16 w-16 text-sky-400" />
       case "management":
-        return <ClipboardList className="h-8 w-8 text-sky-400" />
+        return <ClipboardList className="h-16 w-16 text-sky-400" />
       case "chart":
-        return <BarChart2 className="h-8 w-8 text-sky-400" />
+        return <BarChart2 className="h-16 w-16 text-sky-400" />
       case "dashboard":
-        return <LineChart className="h-8 w-8 text-sky-400" />
+        return <LineChart className="h-16 w-16 text-sky-400" />
       case "edit":
-        return <Edit className="h-8 w-8 text-sky-400" />
+        return <Edit className="h-16 w-16 text-sky-400" />
       case "form":
-        return <ClipboardList className="h-8 w-8 text-sky-400" />
+        return <ClipboardList className="h-16 w-16 text-sky-400" />
       case "download":
-        return <Download className="h-8 w-8 text-sky-400" />
+        return <Download className="h-16 w-16 text-sky-400" />
       default:
-        return <FileText className="h-8 w-8 text-sky-400" />
+        return <FileText className="h-16 w-16 text-sky-400" />
     }
   }
 
   return (
     <div
-      className="bg-[#1a3b6d] rounded-md overflow-hidden transition-all duration-300 cursor-pointer relative"
+      className="bg-[#1a3b6d] rounded-md overflow-hidden transition-all duration-300 cursor-pointer relative h-64"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="p-6 flex items-start gap-4">
-        <div className="rounded-full bg-[#0a2756] p-3 transition-colors">{getIcon()}</div>
-        <div>
-          <h2 className="text-white font-bold text-lg mb-1">{title}</h2>
-          <p className="text-gray-300 text-sm">{description}</p>
+      <div className="p-8 flex items-start gap-6 h-full">
+        <div className="rounded-full bg-[#0a2756] p-4 transition-colors">{getIcon()}</div>
+        <div className="flex-1">
+          <h2 className="text-white font-bold text-2xl mb-3">{title}</h2>
+          <p className="text-gray-300 text-base">{description}</p>
         </div>
       </div>
 
@@ -119,18 +100,18 @@ export function CategoryCard({ title, description, buttons }: CategoryCardProps)
           isHovered ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-wrap justify-center gap-4 p-4">
+        <div className="flex flex-wrap justify-center gap-8 p-6">
           {buttons.map((button) => (
             <button
               key={button.id}
               onClick={button.action}
-              className="flex flex-col items-center w-24 text-center group cursor-pointer"
+              className="flex flex-col items-center w-32 text-center group cursor-pointer"
             >
-              <div className="bg-[#0a2756] p-2 rounded-md mb-2 transition-all duration-200 group-hover:bg-sky-700 group-active:bg-sky-800">
+              <div className="bg-[#0a2756] p-4 rounded-md mb-3 transition-all duration-200 group-hover:bg-sky-700 group-active:bg-sky-800">
                 {getButtonIcon(button.icon)}
               </div>
-              <span className="text-white text-xs group-hover:text-sky-300">{button.title}</span>
-              {!button.internal && <span className="text-gray-400 text-[10px] mt-1">(link externo)</span>}
+              <span className="text-white text-base group-hover:text-sky-300">{button.title}</span>
+              {!button.internal && <span className="text-gray-400 text-xs mt-1">(link externo)</span>}
             </button>
           ))}
         </div>
