@@ -1,12 +1,29 @@
 "use client"
 
+import { BulletproofImage } from "@/components/ui/bulletproofimage";
 import { useState } from "react"
-import { Shield, FileText, Home, Users } from "lucide-react"
+import {
+  Shield,
+  FileText,
+  Home,
+  Users,
+  AlertCircle,
+  CreditCard,
+  FileTextIcon as FileText2,
+  Users2,
+  BarChart2,
+  Edit,
+  ClipboardList,
+  Download,
+  LineChart,
+} from "lucide-react"
 
 interface Button {
   id: number
   title: string
   icon: string
+  action: () => void
+  internal: boolean
 }
 
 interface CategoryCardProps {
@@ -21,15 +38,64 @@ export function CategoryCard({ title, description, buttons }: CategoryCardProps)
   const getIcon = () => {
     switch (title) {
       case "PROTEÇÃO SOCIAL BÁSICA":
-        return <Shield className="h-12 w-12 text-sky-400" />
+        return (
+          <BulletproofImage
+            src="/PSB_ICON.png"
+            alt="Proteção Social Básica"
+          />
+        );
       case "VIGILÂNCIA SOCIOASSISTENCIAL":
-        return <FileText className="h-12 w-12 text-sky-400" />
+        return (
+          <BulletproofImage
+            src="/VIGILANCIA_ICON.png"
+            alt="Vigilância Socioassistencial"
+          />
+        );
       case "PROTEÇÃO SOCIAL ESPECIAL":
-        return <Home className="h-12 w-12 text-sky-400" />
+        return (
+          <BulletproofImage
+            src="/PSE_ICON.png"
+            alt="Proteção Social Especial"
+          />
+        );
       case "CADASTRO ÚNICO":
-        return <Users className="h-12 w-12 text-sky-400" />
+        return (
+          <BulletproofImage
+            src="/CADUNICO_ICON.png"
+            alt="Cadastro Único"
+          />
+        );
+      }
+  };
+
+  const getButtonIcon = (iconName: string) => {
+    switch (iconName) {
+      case "emergency":
+        return <AlertCircle className="h-8 w-8 text-sky-400" />
+      case "card":
+        return <CreditCard className="h-8 w-8 text-sky-400" />
+      case "home":
+        return <Home className="h-8 w-8 text-sky-400" />
+      case "document":
+        return <FileText2 className="h-8 w-8 text-sky-400" />
+      case "report":
+        return <FileText className="h-8 w-8 text-sky-400" />
+      case "people":
+        return <Users2 className="h-8 w-8 text-sky-400" />
+      case "management":
+        return <ClipboardList className="h-8 w-8 text-sky-400" />
+      case "chart":
+        return <BarChart2 className="h-8 w-8 text-sky-400" />
+      case "dashboard":
+        return <LineChart className="h-8 w-8 text-sky-400" />
+      case "edit":
+        return <Edit className="h-8 w-8 text-sky-400" />
+      case "form":
+        return <ClipboardList className="h-8 w-8 text-sky-400" />
+      case "download":
+        return <Download className="h-8 w-8 text-sky-400" />
       default:
-        return <Shield className="h-12 w-12 text-sky-400" />
+        return <FileText className="h-8 w-8 text-sky-400" />
     }
   }
 
@@ -55,15 +121,17 @@ export function CategoryCard({ title, description, buttons }: CategoryCardProps)
       >
         <div className="flex flex-wrap justify-center gap-4 p-4">
           {buttons.map((button) => (
-            <div
+            <button
               key={button.id}
-              className="flex flex-col items-center w-24 text-center hover:scale-110 transition-transform"
+              onClick={button.action}
+              className="flex flex-col items-center w-24 text-center group cursor-pointer"
             >
-              <div className="bg-[#0a2756] p-2 rounded-md mb-2">
-                <img src={button.icon || "/placeholder.svg"} alt={button.title} className="w-10 h-10" />
+              <div className="bg-[#0a2756] p-2 rounded-md mb-2 transition-all duration-200 group-hover:bg-sky-700 group-active:bg-sky-800">
+                {getButtonIcon(button.icon)}
               </div>
-              <span className="text-white text-xs">{button.title}</span>
-            </div>
+              <span className="text-white text-xs group-hover:text-sky-300">{button.title}</span>
+              {!button.internal && <span className="text-gray-400 text-[10px] mt-1">(link externo)</span>}
+            </button>
           ))}
         </div>
       </div>
