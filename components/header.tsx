@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button"
 interface HeaderProps {
   sidebarVisible: boolean
   setSidebarVisible: (visible: boolean) => void
+  setCurrentPage: (page: string | null) => void
 }
 
-export function Header({ sidebarVisible, setSidebarVisible }: HeaderProps) {
+export function Header({ sidebarVisible, setSidebarVisible, setCurrentPage }: HeaderProps) {
   return (
     <header className="bg-[#0a2756] border-b border-[#1a3b6d] p-4 flex justify-between items-center">
       <div className="flex items-center gap-4">
@@ -21,9 +22,12 @@ export function Header({ sidebarVisible, setSidebarVisible }: HeaderProps) {
         >
           <MenuIcon className="h-5 w-5" />
         </Button>
-        <div className="flex items-center">
-         <img src="/logo-prefeitura.png" alt="Prefeitura Rio Logo" className="h-10 w-auto" />
-        
+        <div className="flex items-center cursor-pointer" onClick={() => setCurrentPage(null)}>
+          <img src="/logo-prefeitura.png" alt="Prefeitura Rio Logo" className="h-10 w-auto" />
+          <div className="ml-2 text-white">
+            <div className="text-xs font-bold">Assistência</div>
+            <div className="text-xs">Social</div>
+          </div>
         </div>
       </div>
 

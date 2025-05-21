@@ -187,9 +187,9 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#0a2756]">
-      <Header sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible} />
+      <Header sidebarVisible={sidebarVisible} setSidebarVisible={setSidebarVisible} setCurrentPage={setCurrentPage} />
       <div className="flex">
-        {sidebarVisible && <Menu />}
+        {sidebarVisible && <Menu setCurrentPage={setCurrentPage} />}
         <main className={`flex-1 p-6 transition-all duration-300 ${sidebarVisible ? "" : "ml-0"}`}>
           <div className="bg-[#1a3b6d] rounded-md p-6 mb-6 text-white text-center">
             <h1 className="text-xl font-semibold">SEJA BEM-VINDO(A)</h1>

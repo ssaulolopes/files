@@ -13,9 +13,11 @@ interface MenuItem {
   subItems?: { id: string; title: string }[]
 }
 
-export function Menu() {
-  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
 
+
+export function Menu({ setCurrentPage }: { setCurrentPage: (page: string | null) => void }) {
+  const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
+  
   const menuItems: MenuItem[] = [
     {
       id: "home",
@@ -76,10 +78,13 @@ export function Menu() {
     <aside className="w-60 bg-[#0a2756] border-r border-[#1a3b6d] min-h-[calc(100vh-64px)] transition-all duration-300">
       <nav className="p-4">
         <div className="mb-6">
-          <Link href="/" className="flex items-center gap-2 text-white p-2 rounded-md hover:bg-[#1a3b6d]">
+        <button
+            onClick={() => setCurrentPage(null)}
+            className="flex items-center gap-2 text-white p-2 rounded-md hover:bg-[#1a3b6d] w-full text-left"
+          >
             <Home className="h-5 w-5" />
             <span>Início</span>
-          </Link>
+          </button>
         </div>
 
         <div className="space-y-1">
